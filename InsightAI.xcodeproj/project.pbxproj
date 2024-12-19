@@ -14,6 +14,10 @@
 		090B07572D13B73B00EDF981 /* InsightAITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07562D13B73B00EDF981 /* InsightAITests.swift */; };
 		090B07612D13B73B00EDF981 /* InsightAIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07602D13B73B00EDF981 /* InsightAIUITests.swift */; };
 		090B07632D13B73B00EDF981 /* InsightAIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07622D13B73B00EDF981 /* InsightAIUITestsLaunchTests.swift */; };
+		090B07712D13BBF400EDF981 /* InsightAITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07702D13BBF400EDF981 /* InsightAITabView.swift */; };
+		090B07732D13BCA400EDF981 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07722D13BCA400EDF981 /* HomeView.swift */; };
+		090B07752D13BF1A00EDF981 /* ActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07742D13BF1A00EDF981 /* ActivityCard.swift */; };
+		090B07772D13C3E400EDF981 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07762D13C3E400EDF981 /* HealthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,12 @@
 		090B075C2D13B73B00EDF981 /* InsightAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InsightAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		090B07602D13B73B00EDF981 /* InsightAIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightAIUITests.swift; sourceTree = "<group>"; };
 		090B07622D13B73B00EDF981 /* InsightAIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightAIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		090B076F2D13B8D900EDF981 /* InsightAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InsightAI.entitlements; sourceTree = "<group>"; };
+		090B07702D13BBF400EDF981 /* InsightAITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightAITabView.swift; sourceTree = "<group>"; };
+		090B07722D13BCA400EDF981 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		090B07742D13BF1A00EDF981 /* ActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCard.swift; sourceTree = "<group>"; };
+		090B07762D13C3E400EDF981 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		090B07782D13C64C00EDF981 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +104,16 @@
 		090B07442D13B73800EDF981 /* InsightAI */ = {
 			isa = PBXGroup;
 			children = (
+				090B07782D13C64C00EDF981 /* Info.plist */,
+				090B076F2D13B8D900EDF981 /* InsightAI.entitlements */,
 				090B07452D13B73800EDF981 /* InsightAIApp.swift */,
 				090B07472D13B73800EDF981 /* ContentView.swift */,
 				090B07492D13B73B00EDF981 /* Assets.xcassets */,
 				090B074B2D13B73B00EDF981 /* Preview Content */,
+				090B07702D13BBF400EDF981 /* InsightAITabView.swift */,
+				090B07722D13BCA400EDF981 /* HomeView.swift */,
+				090B07742D13BF1A00EDF981 /* ActivityCard.swift */,
+				090B07762D13C3E400EDF981 /* HealthManager.swift */,
 			);
 			path = InsightAI;
 			sourceTree = "<group>";
@@ -257,8 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090B07712D13BBF400EDF981 /* InsightAITabView.swift in Sources */,
+				090B07772D13C3E400EDF981 /* HealthManager.swift in Sources */,
+				090B07732D13BCA400EDF981 /* HomeView.swift in Sources */,
 				090B07482D13B73800EDF981 /* ContentView.swift in Sources */,
 				090B07462D13B73800EDF981 /* InsightAIApp.swift in Sources */,
+				090B07752D13BF1A00EDF981 /* ActivityCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,12 +439,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InsightAI/InsightAI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InsightAI/Preview Content\"";
 				DEVELOPMENT_TEAM = RNN6D4SV89;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InsightAI/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to your Apple Health";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -448,12 +471,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InsightAI/InsightAI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InsightAI/Preview Content\"";
 				DEVELOPMENT_TEAM = RNN6D4SV89;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InsightAI/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to your Apple Health";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

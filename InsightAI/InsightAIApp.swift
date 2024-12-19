@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct InsightAIApp: App {
+    @StateObject var manager = HealthManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            InsightAITabView()
+                .environmentObject(manager)
         }
     }
 }
