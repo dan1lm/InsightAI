@@ -34,14 +34,18 @@ class HealthManager: ObservableObject {
     init() {
         let steps = HKQuantityType(.stepCount)
         let calories = HKQuantityType(.activeEnergyBurned)
+        let heartRate = HKQuantityType(.heartRate)
+        let distanceWalkingRunning = HKQuantityType(.distanceWalkingRunning)
         
-        let healthTypes: Set = [steps, calories]
+        let healthTypes: Set = [steps, calories, heartRate, distanceWalkingRunning]
         
         Task {
             do {
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
                 fetchTodaySteps()
                 fetchTodayCalories()
+                fetchHeartRate()
+                fetchWalkingDistance()
             }
             catch {
                 print("error while fetching health data")
@@ -88,6 +92,47 @@ class HealthManager: ObservableObject {
         healthStore.execute(query)
         
     }
+    
+    
+    func fetchHeartRate() {
+        let heartRate = HKQuantityType(.heartRate)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
+        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate) { _, result, error in
+            guard let quantity = result?.averageQuantity(), error == nil else {
+                print("Error fetching heart rate data")
+                return
+            }
+            let avgHeartRate = quantity.doubleValue(for: .count().unitDivided(by: .minute()))
+            let activity = Activity(id: 2, title: "Average Heart Rate", subtitle: "Today", image: "heart.fill", amount: "\(Int(avgHeartRate)) BPM")
+            DispatchQueue.main.async {
+                self.activities["heartRate"] = activity
+            }
+        }
+        healthStore.execute(query)
+    }
+    
+    
+    func fetchWalkingDistance() {
+        let distanceType = HKQuantityType(.distanceWalkingRunning)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
+        let query = HKStatisticsQuery(quantityType: distanceType, quantitySamplePredicate: predicate) { _, result, error in
+            guard let quantity = result?.sumQuantity(), error == nil else {
+                print("Error fetching walking distance data")
+                return
+            }
+            let distance = quantity.doubleValue(for: .meter()) / 1000 // Convert to kilometers
+            let activity = Activity(id: 3, title: "Walking Distance", subtitle: "Today", image: "figure.walk", amount: "\(String(format: "%.2f", distance)) km")
+            DispatchQueue.main.async {
+                self.activities["walkingDistance"] = activity
+            }
+        }
+        healthStore.execute(query)
+    }
+
+
+    
+    
+    
 }
 
 
