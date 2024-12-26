@@ -18,6 +18,8 @@
 		090B07732D13BCA400EDF981 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07722D13BCA400EDF981 /* HomeView.swift */; };
 		090B07752D13BF1A00EDF981 /* ActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07742D13BF1A00EDF981 /* ActivityCard.swift */; };
 		090B07772D13C3E400EDF981 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07762D13C3E400EDF981 /* HealthManager.swift */; };
+		093AAF862D1CC3A300A21671 /* Llama2Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093AAF852D1CC3A300A21671 /* Llama2Manager.swift */; };
+		0995C6262D1CF4D400FAE657 /* LlamaStackClient in Frameworks */ = {isa = PBXBuildFile; productRef = 0995C6252D1CF4D400FAE657 /* LlamaStackClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 		090B07742D13BF1A00EDF981 /* ActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCard.swift; sourceTree = "<group>"; };
 		090B07762D13C3E400EDF981 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		090B07782D13C64C00EDF981 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		093AAF852D1CC3A300A21671 /* Llama2Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Llama2Manager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0995C6262D1CF4D400FAE657 /* LlamaStackClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +118,7 @@
 				090B07722D13BCA400EDF981 /* HomeView.swift */,
 				090B07742D13BF1A00EDF981 /* ActivityCard.swift */,
 				090B07762D13C3E400EDF981 /* HealthManager.swift */,
+				093AAF852D1CC3A300A21671 /* Llama2Manager.swift */,
 			);
 			path = InsightAI;
 			sourceTree = "<group>";
@@ -159,6 +164,9 @@
 			dependencies = (
 			);
 			name = InsightAI;
+			packageProductDependencies = (
+				0995C6252D1CF4D400FAE657 /* LlamaStackClient */,
+			);
 			productName = InsightAI;
 			productReference = 090B07422D13B73800EDF981 /* InsightAI.app */;
 			productType = "com.apple.product-type.application";
@@ -231,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 090B07392D13B73800EDF981;
+			packageReferences = (
+				093AAF872D1CF2A800A21671 /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */,
+			);
 			productRefGroup = 090B07432D13B73800EDF981 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -275,6 +286,7 @@
 			files = (
 				090B07712D13BBF400EDF981 /* InsightAITabView.swift in Sources */,
 				090B07772D13C3E400EDF981 /* HealthManager.swift in Sources */,
+				093AAF862D1CC3A300A21671 /* Llama2Manager.swift in Sources */,
 				090B07732D13BCA400EDF981 /* HomeView.swift in Sources */,
 				090B07482D13B73800EDF981 /* ContentView.swift in Sources */,
 				090B07462D13B73800EDF981 /* InsightAIApp.swift in Sources */,
@@ -614,6 +626,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		093AAF872D1CF2A800A21671 /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/meta-llama/llama-stack-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.58;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0995C6252D1CF4D400FAE657 /* LlamaStackClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 093AAF872D1CF2A800A21671 /* XCRemoteSwiftPackageReference "llama-stack-client-swift" */;
+			productName = LlamaStackClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 090B073A2D13B73800EDF981 /* Project object */;
 }

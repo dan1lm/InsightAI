@@ -34,17 +34,17 @@ class HealthManager: ObservableObject {
     init() {
         let steps = HKQuantityType(.stepCount)
         let calories = HKQuantityType(.activeEnergyBurned)
-        let heartRate = HKQuantityType(.heartRate)
+        let sleepType = HKCategoryType(.sleepAnalysis)
         let distanceWalkingRunning = HKQuantityType(.distanceWalkingRunning)
         
-        let healthTypes: Set = [steps, calories, heartRate, distanceWalkingRunning]
+        let healthTypes: Set = [steps, calories, sleepType, distanceWalkingRunning]
         
         Task {
             do {
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
                 fetchTodaySteps()
                 fetchTodayCalories()
-                fetchHeartRate()
+                fetchSleepData()
                 fetchWalkingDistance()
             }
             catch {
@@ -94,22 +94,84 @@ class HealthManager: ObservableObject {
     }
     
     
-    func fetchHeartRate() {
-        let heartRate = HKQuantityType(.heartRate)
-        let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
-        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate) { _, result, error in
-            guard let quantity = result?.averageQuantity(), error == nil else {
-                print("Error fetching heart rate data")
+    func fetchSleepData() {
+        let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+
+        let calendar = Calendar.current
+        let now = Date()
+
+        // Define time range for the previous night (6 PM to 10 AM the next day)
+        let startOfPreviousNight = calendar.date(bySettingHour: 22, minute: 0, second: 0, of: now.addingTimeInterval(-86400))!
+        let endOfPreviousNight = calendar.date(bySettingHour: 6, minute: 0, second: 0, of: now)!
+
+
+        let predicate = HKQuery.predicateForSamples(withStart: startOfPreviousNight, end: endOfPreviousNight, options: .strictStartDate)
+        
+        // Query for sleep data
+        let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, samples, error) in
+            guard let samples = samples as? [HKCategorySample], error == nil else {
+                print("Error fetching sleep data: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-            let avgHeartRate = quantity.doubleValue(for: .count().unitDivided(by: .minute()))
-            let activity = Activity(id: 2, title: "Average Heart Rate", subtitle: "Today", image: "heart.fill", amount: "\(Int(avgHeartRate)) BPM")
-            DispatchQueue.main.async {
-                self.activities["heartRate"] = activity
+
+            // Filter samples to include only those from Apple Health
+            let filteredSamples = samples.filter { sample in
+                let source = sample.sourceRevision.source.bundleIdentifier
+                return source.starts(with: "com.apple.health") ?? false
             }
+
+            // Initialize variables to track different sleep states
+            var remSleepSeconds: TimeInterval = 0
+            var deepSleepSeconds: TimeInterval = 0
+            var coreSleepSeconds: TimeInterval = 0
+            var awakeningsCount = 0
+            var totalSleepSeconds: TimeInterval = 0
+
+            // Process the filtered samples and calculate sleep durations
+            for sample in filteredSamples {
+                let value = sample.value
+                let duration = sample.endDate.timeIntervalSince(sample.startDate)
+
+                switch value {
+                case HKCategoryValueSleepAnalysis.asleepREM.rawValue:
+                    remSleepSeconds += duration
+                case HKCategoryValueSleepAnalysis.asleepCore.rawValue:
+                    coreSleepSeconds += duration
+                case HKCategoryValueSleepAnalysis.asleepDeep.rawValue:
+                    deepSleepSeconds += duration
+                case HKCategoryValueSleepAnalysis.awake.rawValue:
+                    awakeningsCount += 1
+                default:
+                    break
+                }
+            }
+
+            // Calculate total sleep time
+            totalSleepSeconds = deepSleepSeconds + coreSleepSeconds + remSleepSeconds
+
+            // Convert total sleep time to hours
+            let sleepHours = totalSleepSeconds / 3600
+            
+            // Create an Activity object to update UI
+            let activity = Activity(id: 2, title: "Total Sleep", subtitle: "Last Night", image: "bed.double.fill", amount: "\(String(format: "%.1f", sleepHours)) hours")
+            
+            // Update the UI with sleep data
+            DispatchQueue.main.async {
+                self.activities["sleepTime"] = activity
+            }
+
+            // Optionally, print out the detailed sleep info for debugging
+            print("REM Sleep: \(remSleepSeconds / 3600) hours")
+            print("Deep Sleep: \(deepSleepSeconds / 3600) hours")
+            print("Core Sleep: \(coreSleepSeconds / 3600) hours")
+            print("Awakenings: \(awakeningsCount)")
+            print("Total Sleep: \(sleepHours) hours")
         }
+
+        // Execute the query
         healthStore.execute(query)
     }
+
     
     
     func fetchWalkingDistance() {

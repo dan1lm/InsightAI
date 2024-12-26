@@ -15,7 +15,7 @@ struct InsightAITabView: View {
         
         TabView(selection: $selectedTab) {
             HomeView().tag("Home").tabItem{
-                Image(systemName: "house")
+                Image(systemName: "lightbulb.max.fill")
             }.environmentObject(manager)
             
             ContentView().tag("Content").tabItem { Image(systemName: "person")
