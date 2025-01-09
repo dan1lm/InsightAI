@@ -18,6 +18,11 @@
 		090B07732D13BCA400EDF981 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07722D13BCA400EDF981 /* HomeView.swift */; };
 		090B07752D13BF1A00EDF981 /* ActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07742D13BF1A00EDF981 /* ActivityCard.swift */; };
 		090B07772D13C3E400EDF981 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090B07762D13C3E400EDF981 /* HealthManager.swift */; };
+		09916D232D2F86E6009A2134 /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D222D2F86E6009A2134 /* SpeziLLM */; };
+		09916D252D2F86E6009A2134 /* SpeziLLMFog in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D242D2F86E6009A2134 /* SpeziLLMFog */; };
+		09916D272D2F86E6009A2134 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D262D2F86E6009A2134 /* SpeziLLMLocal */; };
+		09916D292D2F86E6009A2134 /* SpeziLLMLocalDownload in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D282D2F86E6009A2134 /* SpeziLLMLocalDownload */; };
+		09916D2B2D2F86E6009A2134 /* SpeziLLMOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D2A2D2F86E6009A2134 /* SpeziLLMOpenAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09916D292D2F86E6009A2134 /* SpeziLLMLocalDownload in Frameworks */,
+				09916D272D2F86E6009A2134 /* SpeziLLMLocal in Frameworks */,
+				09916D232D2F86E6009A2134 /* SpeziLLM in Frameworks */,
+				09916D2B2D2F86E6009A2134 /* SpeziLLMOpenAI in Frameworks */,
+				09916D252D2F86E6009A2134 /* SpeziLLMFog in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +169,13 @@
 			dependencies = (
 			);
 			name = InsightAI;
+			packageProductDependencies = (
+				09916D222D2F86E6009A2134 /* SpeziLLM */,
+				09916D242D2F86E6009A2134 /* SpeziLLMFog */,
+				09916D262D2F86E6009A2134 /* SpeziLLMLocal */,
+				09916D282D2F86E6009A2134 /* SpeziLLMLocalDownload */,
+				09916D2A2D2F86E6009A2134 /* SpeziLLMOpenAI */,
+			);
 			productName = InsightAI;
 			productReference = 090B07422D13B73800EDF981 /* InsightAI.app */;
 			productType = "com.apple.product-type.application";
@@ -231,6 +248,9 @@
 				Base,
 			);
 			mainGroup = 090B07392D13B73800EDF981;
+			packageReferences = (
+				09916D212D2F86E6009A2134 /* XCRemoteSwiftPackageReference "SpeziLLM" */,
+			);
 			productRefGroup = 090B07432D13B73800EDF981 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -614,6 +634,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09916D212D2F86E6009A2134 /* XCRemoteSwiftPackageReference "SpeziLLM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziLLM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09916D222D2F86E6009A2134 /* SpeziLLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09916D212D2F86E6009A2134 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLM;
+		};
+		09916D242D2F86E6009A2134 /* SpeziLLMFog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09916D212D2F86E6009A2134 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMFog;
+		};
+		09916D262D2F86E6009A2134 /* SpeziLLMLocal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09916D212D2F86E6009A2134 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMLocal;
+		};
+		09916D282D2F86E6009A2134 /* SpeziLLMLocalDownload */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09916D212D2F86E6009A2134 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMLocalDownload;
+		};
+		09916D2A2D2F86E6009A2134 /* SpeziLLMOpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09916D212D2F86E6009A2134 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMOpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 090B073A2D13B73800EDF981 /* Project object */;
 }
