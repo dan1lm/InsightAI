@@ -23,6 +23,8 @@
 		09916D272D2F86E6009A2134 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D262D2F86E6009A2134 /* SpeziLLMLocal */; };
 		09916D292D2F86E6009A2134 /* SpeziLLMLocalDownload in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D282D2F86E6009A2134 /* SpeziLLMLocalDownload */; };
 		09916D2B2D2F86E6009A2134 /* SpeziLLMOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 09916D2A2D2F86E6009A2134 /* SpeziLLMOpenAI */; };
+		09916D312D305877009A2134 /* LocalLLMAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09916D302D305877009A2134 /* LocalLLMAppDelegate.swift */; };
+		09916D332D305C2D009A2134 /* LLMDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09916D322D305C2D009A2134 /* LLMDemoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		090B07742D13BF1A00EDF981 /* ActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCard.swift; sourceTree = "<group>"; };
 		090B07762D13C3E400EDF981 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		090B07782D13C64C00EDF981 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		09916D302D305877009A2134 /* LocalLLMAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalLLMAppDelegate.swift; sourceTree = "<group>"; };
+		09916D322D305C2D009A2134 /* LLMDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMDemoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 				090B07722D13BCA400EDF981 /* HomeView.swift */,
 				090B07742D13BF1A00EDF981 /* ActivityCard.swift */,
 				090B07762D13C3E400EDF981 /* HealthManager.swift */,
+				09916D302D305877009A2134 /* LocalLLMAppDelegate.swift */,
+				09916D322D305C2D009A2134 /* LLMDemoView.swift */,
 			);
 			path = InsightAI;
 			sourceTree = "<group>";
@@ -294,9 +300,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				090B07712D13BBF400EDF981 /* InsightAITabView.swift in Sources */,
+				09916D332D305C2D009A2134 /* LLMDemoView.swift in Sources */,
 				090B07772D13C3E400EDF981 /* HealthManager.swift in Sources */,
 				090B07732D13BCA400EDF981 /* HomeView.swift in Sources */,
 				090B07482D13B73800EDF981 /* ContentView.swift in Sources */,
+				09916D312D305877009A2134 /* LocalLLMAppDelegate.swift in Sources */,
 				090B07462D13B73800EDF981 /* InsightAIApp.swift in Sources */,
 				090B07752D13BF1A00EDF981 /* ActivityCard.swift in Sources */,
 			);
